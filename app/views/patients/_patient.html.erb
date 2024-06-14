@@ -1,0 +1,47 @@
+<div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+	<div class="flex mb-6">
+		<%= link_to patients_path, class: "mr-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" do %>
+			<svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+				<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
+			</svg>
+			Back to patients
+		<% end %>
+		<% if can? :manage, Patient %>
+			<button data-modal-target="edit-crud-modal" data-modal-toggle="edit-crud-modal" type="button" class="mr-2 ml-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+				<svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+				</svg>
+				Edit Patient Details
+			</button>
+			<%= render "edit", patient: @patient %>
+			<%= button_to @patient, method: :delete, class: "mr-2 ml-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" do %>
+				<svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+				</svg>
+				Delete Patient
+			<% end %>
+		<% end %>
+	</div>
+	<div class="relative w-20 h-20 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 mb-4">
+		<svg class="absolute w-24 h-24 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+	</div>
+	<a href="#" class="mt-6">
+		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= patient.name %></h5>
+	</a>
+	<div class="mb-2">
+		<p class="font-normal text-gray-400 dark:text-gray-400">Email address</p>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= patient.email %></p>
+	</div>
+	<div class="mb-2">
+		<p class="font-normal text-gray-400 dark:text-gray-400">Phone number</p>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= patient.phone_number %></p>
+	</div>
+	<div class="mb-2">
+		<p class="font-normal text-gray-400 dark:text-gray-400">Home Address</p>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= patient.address %></p>
+	</div>
+	<div class="mb-2">
+		<p class="font-normal text-gray-400 dark:text-gray-400">Date of birth</p>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= patient.dob %></p>
+	</div>
+</div>
