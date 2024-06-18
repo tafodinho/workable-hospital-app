@@ -144,7 +144,7 @@ function initializeDropdown(chart) {
       console.log("Selected value:", value);
 
       // Hide the dropdown
-      fetch("http://localhost:3000/dashboard", {
+      fetch("/dashboard", {
         method: "POST",
         headers: {
           Accept: "application/json",
