@@ -83,6 +83,6 @@ test:
 #
 production:
   <<: *default
-  database: workable_app_production
-  username: workable_app
-  password: <%= ENV["WORKABLE_APP_DATABASE_PASSWORD"] %>
+  database: <%= ENV["POSTGRES_DB"] %>
+  username: <%= ENV["POSTGRES_USER"] %>
+  password: <%= ENV["password"] %>
