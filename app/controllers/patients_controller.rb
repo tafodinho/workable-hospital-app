@@ -2,18 +2,31 @@ class PatientsController < ApplicationController
   before_action :set_patient, only: %i[ show edit update destroy ]
   layout 'dashboard'
   # GET /patients or /patients.json
+
   def index
     page = params[:page].present? ? params[:page].to_i : 1
-    if params[:search].present?
-      @patients = Patient.search(params[:search]).page(params[:page])
+    if params[:query].present?
+      @patients = Patient.search(params[:query]).page(page)
     else
-      @patients = Patient.all.page(params[:page])
+      @patients = Patient.all.page(page)
     end
     # @patients = Patient.page(page).per(30)
     @patient = Patient.new
     @total_patients = Patient.count
     @total_users = User.count
+
+    puts "Here is the answer: #{turbo_frame_request?}"
+    respond_to do |format|
+      if turbo_frame_request?
+        format.html { render partial: 'table', locals: { patients: @patients } }
+      else
+        format.html # index.html.erb
+      end
+    end
+      
+
   end
+
 
   # GET /patients/1 or /patients/1.json
   def show

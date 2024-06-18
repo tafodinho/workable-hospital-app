@@ -11,11 +11,24 @@ require 'json'
 require_relative "../config/environment"
 require 'faker'
 
-# User.create(
-#   email: "user@user.com",
-#   password: "Hacker@111",
-#   role: 1
-# )
+User.create(
+  email: "user@user.com",
+  password: "Hacker@111",
+  role: 1
+)
+
+User.create(
+  email: "admin@admin.com",
+  password: "Hacker@111",
+  role: 0
+)
+
+User.create(
+  email: "tafodinho@gmail.com.com",
+  password: "Hacker@111",
+  role: 2
+)
+
 
 # Get today's date and time
 

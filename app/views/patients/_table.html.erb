@@ -1,60 +1,62 @@
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-	<table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-		<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-			<tr>
-				<%# <th scope="col" class="p-4">
+<%= turbo_frame_tag "patients" do %>
+	<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+		<table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+			<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+				<tr>
+					<%# <th scope="col" class="p-4">
 					<div class="flex items-center">
 						<input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 						<label for="checkbox-all-search" class="sr-only">checkbox</label>
 					</div>
 				</th> %>
-				<th scope="col" class="px-6 py-3">
-					ID
-				</th>
-				<th scope="col" class="px-6 py-3">
-					Patient Name
-				</th>
-				<th scope="col" class="px-6 py-3">
-					Email
-				</th>
-				<th scope="col" class="px-6 py-3">
-					Phone Number
-				</th>
-				<th scope="col" class="px-6 py-3">
-					Address
-				</th>
-				<th scope="col" class="px-6 py-3">
-					Action
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @patients.each do |patient| %>
-				<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-					<td class="px-6 p-4 ">
-						<%= patient.id %>
-					</td>
-					<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-						<%= link_to patient.name, patient, class: "ml-2 inline-block font-medium" %>
+					<th scope="col" class="px-6 py-3">
+						ID
 					</th>
-					<td class="px-6 py-4">
-						<%= patient.email %>
-					</td>
-					<td class="px-6 py-4">
-						<%= patient.phone_number %>
-					</td>
-					<td class="px-6 py-4">
-						<%= patient.address %>
-					</td>
-					<td class="flex items-center px-6 py-4">
-						<%# <button data-modal-target="edit-crud-modal" data-modal-toggle="edit-crud-modal" type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Show</button> %>
-						<%= button_to "Show", patient, method: :get, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
-						<% if can? :manage, Patient %>
-							<%= button_to "Remove", patient, method: :delete, class: "font-medium text-red-600 dark:text-red-500 hover:underline ms-3" %>
-						<% end %>
-					</td>
+					<th scope="col" class="px-6 py-3">
+						Patient Name
+					</th>
+					<th scope="col" class="px-6 py-3">
+						Email
+					</th>
+					<th scope="col" class="px-6 py-3">
+						Phone Number
+					</th>
+					<th scope="col" class="px-6 py-3">
+						Address
+					</th>
+					<th scope="col" class="px-6 py-3">
+						Action
+					</th>
 				</tr>
-			<% end %>
-		</tbody>
-	</table>
-</div>
+			</thead>
+			<tbody id="table-body">
+				<% @patients.each do |patient| %>
+					<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+						<td class="px-6 p-4 ">
+							<%= patient.id %>
+						</td>
+						<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+							<%= link_to patient.name,  patient, data: {turbo: false}, class: "ml-2 inline-block font-medium" %>
+						</th>
+						<td class="px-6 py-4">
+							<%= patient.email %>
+						</td>
+						<td class="px-6 py-4">
+							<%= patient.phone_number %>
+						</td>
+						<td class="px-6 py-4">
+							<%= patient.address %>
+						</td>
+						<td class="flex items-center px-6 py-4">
+							<%# <button data-modal-target="edit-crud-modal" data-modal-toggle="edit-crud-modal" type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Show</button> %>
+							<%= button_to "Show", patient, method: :get, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+							<% if can? :manage, Patient %>
+								<%= button_to "Remove", patient, method: :delete, class: "font-medium text-red-600 dark:text-red-500 hover:underline ms-3" %>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+<% end %>

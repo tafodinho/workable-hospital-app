@@ -79,3 +79,5 @@ gem "devise", "~> 4.9"
 gem 'cancancan'
 gem 'faker'
 gem 'kaminari'
+
+gem "dockerfile-rails", ">= 1.6", :group => :development
